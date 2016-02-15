@@ -11,6 +11,7 @@ Standards-Version: 3.9.4
 
 Package: pic32-tools
 Architecture: any
+XBSC-Group: PIC32
 Depends: 
 Description: PIC32 Compiler for MX and MZ version 4.8.3
  This version of the GCC compiler is based on XC32 version 1.40 from Microchip.
