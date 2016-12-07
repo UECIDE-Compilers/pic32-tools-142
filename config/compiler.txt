@@ -56,7 +56,7 @@ compile.size=${size}::-S::${build.path}/${filename}.elf
 
 compile.bin=${objcopy}::--input-target::binary::--output-target::elf32-tradlittlemips::--binary-architecture::mips::--rename-section::.data=.text,alloc,load,readonly,code,share,contents::${source.name}::${object.name}
 
-compiler.error=^(.+):(\d+):\d+: error: (.*)
+compiler.error=^(.+):(\d+):\d+: (?:fatal\s)?error: (.*)
 compiler.warning=^(.+):(\d+):\d+: warning: (.*)
 
 options.warnings.name=Warnings
