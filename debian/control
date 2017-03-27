@@ -13,14 +13,5 @@ Package: pic32-tools
 Architecture: any
 XBSC-Group: PIC32
 Depends: 
-Description: PIC32 Compiler for MX and MZ version 4.8.3
- This version of the GCC compiler is based on XC32 version 1.40 from Microchip.
- It provides full support for both the PIC32MX and PIC32MZ microcontrollers, including
- the new PIC32MZ...EF microcontrollers with FPU.
- . 
- This is the default compiler for the chipKIT core and the recommended version.
- .
- Note that PLIB has now been completely removed from the compiler since it is
- incompatible with the MZ chips. Therefore if you require PLIB for legacy code
- you should install the version 4.5.2 of the compiler which only supports MX chips
- but has PLIB included with it.
+Description: PIC32 Compiler version 1.43
+ This version of the GCC compiler is based on XC32 version 1.43 from Microchip.

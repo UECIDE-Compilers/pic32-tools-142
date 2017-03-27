@@ -9,6 +9,39 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
+FILE=unknown
+URL=unknown
+VER=143
+
+ifeq (${DEB_HOST_ARCH},linux-amd64)
+	URL=https://github.com/chipKIT32/chipKIT-compiler-builds/releases/download/1.43/pic32-tools-143-Linux32-image.tar.gz
+endif
+
+ifeq (${DEB_HOST_ARCH},linux-i386)
+	URL=https://github.com/chipKIT32/chipKIT-compiler-builds/releases/download/1.43/pic32-tools-143-Linux32-image.tar.gz
+endif
+
+ifeq (${DEB_HOST_ARCH},linux-armhf)
+	URL=https://github.com/chipKIT32/chipKIT-compiler-builds/releases/download/1.43/pic32-tools-143-arm-linux-image.tar.gz
+endif
+
+ifeq (${DEB_HOST_ARCH},linux-armel)
+	URL=https://github.com/chipKIT32/chipKIT-compiler-builds/releases/download/1.43/pic32-tools-143-arm-linux-image.tar.gz
+endif
+
+ifeq (${DEB_HOST_ARCH},windows-i386)
+	URL=https://github.com/chipKIT32/chipKIT-compiler-builds/releases/download/1.43/pic32-tools-143-win32-image.tar.gz
+endif
+
+ifeq (${DEB_HOST_ARCH},windows-amd64)
+	URL=https://github.com/chipKIT32/chipKIT-compiler-builds/releases/download/1.43/pic32-tools-143-win32-image.tar.gz
+endif
+
+ifeq (${DEB_HOST_ARCH},darwin-amd64)
+	URL=https://github.com/chipKIT32/chipKIT-compiler-builds/releases/download/1.43/pic32-tools-143-Darwin-image.tar.gz
+endif
+
+
 %:
 	dh $@ 
 
@@ -25,3 +58,16 @@ override_dh_fixperms:
 override_dh_makeshlibs:
 override_dh_shlibdeps:
 
+override_dh_auto_build:
+	wget -c -O ../../downloads/pic32-tools-${DEB_HOST_ARCH}-${VER}.tar.gz ${URL}
+	rm -rf build
+	mkdir -p build
+	tar -C build ../../downloads/pic32-tools-${DEB_HOST_ARCH}-${VER}.tar.gz
+
+override_dh_auto_clean:
+	rm -rf build
+
+override_dh_auto_install:
+	mkdir -p debian/pic32-tools/compilers/
+	cp -RL build/pic32-tools debian/pic32-tools/compilers/
+	cp debian/uecide/compiler.txt debian/pic32-tools/compilers/picto-tools/
