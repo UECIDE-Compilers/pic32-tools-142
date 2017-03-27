@@ -1,8 +1,8 @@
-name=pic32-tools
+name=pic32-tools-142
 family=pic32
 version=20140530
 revision=3
-description=PIC32 Compiler version 1.43
+description=PIC32 Compiler version 1.42
 compiler.smalldata=1024
 
 optimize=${option:optimize.flag}

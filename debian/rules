@@ -11,34 +11,35 @@
 
 FILE=unknown
 URL=unknown
-VER=143
+VER=1.42
+REV=142
 
 ifeq (${DEB_HOST_ARCH},linux-amd64)
-	URL=https://github.com/chipKIT32/chipKIT-compiler-builds/releases/download/1.43/pic32-tools-143-Linux32-image.tar.gz
+	URL=https://github.com/chipKIT32/chipKIT-compiler-builds/releases/download/${VER}/pic32-tools-${REV}-Linux32-image.tar.gz
 endif
 
 ifeq (${DEB_HOST_ARCH},linux-i386)
-	URL=https://github.com/chipKIT32/chipKIT-compiler-builds/releases/download/1.43/pic32-tools-143-Linux32-image.tar.gz
+	URL=https://github.com/chipKIT32/chipKIT-compiler-builds/releases/download/${VER}/pic32-tools-${REV}-Linux32-image.tar.gz
 endif
 
 ifeq (${DEB_HOST_ARCH},linux-armhf)
-	URL=https://github.com/chipKIT32/chipKIT-compiler-builds/releases/download/1.43/pic32-tools-143-arm-linux-image.tar.gz
+	URL=https://github.com/chipKIT32/chipKIT-compiler-builds/releases/download/${VER}/pic32-tools-${REV}-arm-linux-image.tar.gz
 endif
 
 ifeq (${DEB_HOST_ARCH},linux-armel)
-	URL=https://github.com/chipKIT32/chipKIT-compiler-builds/releases/download/1.43/pic32-tools-143-arm-linux-image.tar.gz
+	URL=https://github.com/chipKIT32/chipKIT-compiler-builds/releases/download/${VER}/pic32-tools-${REV}-arm-linux-image.tar.gz
 endif
 
 ifeq (${DEB_HOST_ARCH},windows-i386)
-	URL=https://github.com/chipKIT32/chipKIT-compiler-builds/releases/download/1.43/pic32-tools-143-win32-image.tar.gz
+	URL=https://github.com/chipKIT32/chipKIT-compiler-builds/releases/download/${VER}/pic32-tools-${REV}-win32-image.tar.gz
 endif
 
 ifeq (${DEB_HOST_ARCH},windows-amd64)
-	URL=https://github.com/chipKIT32/chipKIT-compiler-builds/releases/download/1.43/pic32-tools-143-win32-image.tar.gz
+	URL=https://github.com/chipKIT32/chipKIT-compiler-builds/releases/download/${VER}/pic32-tools-${REV}-win32-image.tar.gz
 endif
 
 ifeq (${DEB_HOST_ARCH},darwin-amd64)
-	URL=https://github.com/chipKIT32/chipKIT-compiler-builds/releases/download/1.43/pic32-tools-143-Darwin-image.tar.gz
+	URL=https://github.com/chipKIT32/chipKIT-compiler-builds/releases/download/${VER}/pic32-tools-${REV}-Darwin-image.tar.gz
 endif
 
 
@@ -59,15 +60,15 @@ override_dh_makeshlibs:
 override_dh_shlibdeps:
 
 override_dh_auto_build:
-	wget -c -O ../../downloads/pic32-tools-${DEB_HOST_ARCH}-${VER}.tar.gz ${URL}
+	wget -c -O ../../downloads/pic32-tools-${DEB_HOST_ARCH}-${REV}.tar.gz ${URL}
 	rm -rf build
 	mkdir -p build
-	tar -C build ../../downloads/pic32-tools-${DEB_HOST_ARCH}-${VER}.tar.gz
+	tar -C build -zxf ../../downloads/pic32-tools-${DEB_HOST_ARCH}-${REV}.tar.gz
 
 override_dh_auto_clean:
 	rm -rf build
 
 override_dh_auto_install:
-	mkdir -p debian/pic32-tools/compilers/
-	cp -RL build/pic32-tools debian/pic32-tools/compilers/
-	cp debian/uecide/compiler.txt debian/pic32-tools/compilers/picto-tools/
+	mkdir -p debian/pic32-tools-${REV}/compilers/
+	cp -RL build/pic32-tools debian/pic32-tools-${REV}/compilers/pic32-tools-${REV}
+	cp debian/uecide/compiler.txt debian/pic32-tools/compilers/pic32-tools-${REV}/

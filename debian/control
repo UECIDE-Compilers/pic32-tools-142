@@ -1,4 +1,4 @@
-Source: pic32-tools
+Source: pic32-tools-142
 Section: compilers
 Priority: extra
 XBSC-Family: pic32
@@ -9,9 +9,10 @@ Standards-Version: 3.9.4
 #Vcs-Git: git://git.debian.org/collab-maint/pic32-tools.git
 #Vcs-Browser: http://git.debian.org/?p=collab-maint/pic32-tools.git;a=summary
 
-Package: pic32-tools
+Package: pic32-tools-142
 Architecture: any
 XBSC-Group: PIC32
 Depends: 
-Description: PIC32 Compiler version 1.43
- This version of the GCC compiler is based on XC32 version 1.43 from Microchip.
+Replaces: pic32-tools-pre
+Description: PIC32 Compiler version 1.42
+ This version of the GCC compiler is based on XC32 version 1.42 from Microchip.
